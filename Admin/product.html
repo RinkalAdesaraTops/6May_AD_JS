@@ -247,12 +247,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Category</h1>
+            <h1 class="m-0">Product</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Category</li>
+              <li class="breadcrumb-item active">Product</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -269,21 +269,37 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Category</h3>
+                <h3 class="card-title">Add Product</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="#" method="post"  name="catfrm">
+              <form action="#" method="post" name="prfrm" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Category</label>
-                    <input type="text" class="form-control" id="catname" placeholder="Enter category" name="catname">
+                    <select name="catname" id="catname" class="form-control">
+
+                    </select>
                   </div>
-                 
-                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Product Name</label>
+                    <input type="text" class="form-control" id="prname" placeholder="Enter Product" name="prname">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Price</label>
+                    <input type="number" class="form-control" id="price" placeholder="Enter Price" name="price">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Image</label>
+                    <input type="file" class="form-control" id="image" name="image" onchange="getImageUrl(this)"><br>
+                    <img src="" alt="" id="imgthumbnail" height="50px" width="50px">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <textarea name="desc" id="desc" class="form-control"></textarea>
+                  </div>
                 </div>
                 <!-- /.card-body -->
-
                 <div class="card-footer">
                   <button type="button" class="btn btn-primary" onclick="saveData()">Save</button>
                 </div>
@@ -297,7 +313,7 @@
           <div class="col-md-6">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Category List</h3>
+                <h3 class="card-title">Product List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -305,7 +321,7 @@
                   <thead>
                     <tr>
                       <th style="width: 10px">#</th>
-                      <th>Category</th>
+                      <th>Product</th>
                       <th>Action</th>
                       
                     </tr>
@@ -385,6 +401,6 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
 
-<script src="dist/js/cat.js"></script>
+<script src="dist/js/product.js"></script>
 </body>
 </html>

@@ -105,7 +105,7 @@ allCatwisePr += `<div id="tab-1" class="tab-pane fade show p-0 active">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p class="text-dark fs-5 fw-bold mb-0">$${j.price} / kg</p>
-                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    <button onclick="addToCart(${j.pid})" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@ allCatData.map((i)=>{
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$${j.price} / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <button onclick="addToCart(${j.pid})" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,3 +158,44 @@ allCatData.map((i)=>{
 
 
 document.getElementById('productData').innerHTML = allCatwisePr
+
+let cartData = []
+const addToCart=(id)=>{
+    let getCartData = JSON.parse(localStorage.getItem('cartInfo'))
+    let len = getCartData != null ? getCartData.length+1 : 1;
+    let checkData = '';
+    if(getCartData != null){
+        checkData = getCartData.find((i)=>{
+            return i.pid == id
+        })
+    }
+    if(checkData != undefined){
+        //qty ++
+        let data = getCartData.map((i)=>{
+            if(i.pid == id){
+                i.qty += 1;
+            }   
+            return i;
+        })
+        cartData = data
+    } else {
+        //push
+        let obj = {
+            cartid:len,
+            pid:id,
+            qty:1
+        }
+        cartData.push(obj)
+    }
+    
+    localStorage.setItem("cartInfo",JSON.stringify(cartData))
+getCounter()
+    
+}
+function getCounter(){
+    let getCartData = JSON.parse(localStorage.getItem('cartInfo'))
+    let finalLength = getCartData.length;
+    console.log(finalLength);
+    document.getElementById("cartCounter").innerHTML = finalLength
+}
+getCounter()
